@@ -1,0 +1,106 @@
+@page{
+	size: A4 portrait;
+    margin: 1cm;
+}
+body {
+	background: white;
+	font-family: 'Open Sans', sans-serif;
+}
+.navbar, .pageControls, .sprint-info {
+	display: none;
+}
+.task-item, .backlog-item {
+	width: 8.5cm;
+	height: 8.5cm;
+	float: left;
+    border: 5pt solid #E0E0E0;
+	padding: 0.3cm;	
+	-webkit-box-sizing: border-box; 
+	-moz-box-sizing: border-box;    
+	box-sizing: border-box;
+	page-break-inside: avoid;
+	page-break-after: always;
+	position: relative;
+	overflow: hidden;
+    margin: 1pt;
+    -webkit-print-color-adjust: exact;
+}
+.task-item-title {
+	font-size: 18pt;
+	font-weight: 600;
+}
+.backlog-item-title {
+	font-size: 30pt;
+	font-weight: 600;
+}
+.task-item-description, .backlog-item-description {
+	padding-top: 0.3cm;
+	font-size: 10pt;	
+	font-weight: 400;
+}
+.task-item-text, .backlog-item-text {
+	max-height: 6cm;
+	overflow: hidden;
+}
+.task-item-hours {
+	font-size: 24pt;	
+	font-weight: 600;
+	position: absolute;
+	bottom: 0.3cm;
+	right: 0.5cm;
+	overflow: hidden;
+}
+.task-item-testing {
+	font-size: 24pt;	
+	font-weight: 600;
+	position: absolute;
+	bottom: 0.3cm;
+	left: 0.5cm;
+	overflow: hidden;
+	color: red;
+}
+.task-item-cr {
+	font-size: 24pt;	
+	font-weight: 400;
+	position: absolute;
+	bottom: 0.3cm;
+	left: 3cm;
+	overflow: hidden;
+	color: green;
+}
+.task-item-ut {
+	font-size: 24pt;	
+	font-weight: 400;
+	position: absolute;
+	bottom: 0.3cm;
+	left: 0.5cm;
+	overflow: hidden;
+	color: green;
+}
+.backlog-item-effort {
+    display: none;
+}
+.task-item-backlogno, .backlog-item-backlogno {
+    position: absolute;
+    text-align: center;
+    font-size: 160pt;
+    color: #E5E5E5;
+    -webkit-print-color-adjust: exact;
+    z-index: -1;
+    top: 0.5cm;
+    left: 0.5cm;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
