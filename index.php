@@ -1,12 +1,12 @@
 <html>
 	<head>
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css' />
-        <link rel="stylesheet" media="screen" href="/css/bootstrap.min.css" />
-        <link rel="stylesheet" media="screen" href="/css/bootstrap-responsive.min.css" />
-        <link rel="stylesheet" media="screen" href="/css/screen.css" />
-        <link rel="stylesheet" media="print" href="/css/print.css" />
-        <link href="/css/shared?v=UNBr3WWn5VDuBpRrqLgkyIJXeUzc529GlPqXw6YT_hg1" rel="stylesheet"/>
-        <script src="/js/modernizr?v=qVODBytEBVVePTNtSFXgRX0NCEjh9U_Oj8ePaSiRcGg1"></script>
+        <link rel="stylesheet" media="screen" href="css/bootstrap.min.css" />
+        <link rel="stylesheet" media="screen" href="css/bootstrap-responsive.min.css" />
+        <link rel="stylesheet" media="screen" href="css/screen.css" />
+        <link rel="stylesheet" media="print" href="css/print.css" />
+        <link href="css/shared?v=UNBr3WWn5VDuBpRrqLgkyIJXeUzc529GlPqXw6YT_hg1" rel="stylesheet"/>
+        <script src="js/modernizr?v=qVODBytEBVVePTNtSFXgRX0NCEjh9U_Oj8ePaSiRcGg1"></script>
 
 	<style type="text/css">
 		.box {
@@ -68,6 +68,10 @@ foreach($result->lists as &$list){
 		echo '</div>';
 		foreach($result->cards as &$card) {
 				if($card -> idList == $list -> id && $card->closed != "true"){
+					if (preg_match('[CR 1]', $card->desc))
+						$codeReview = true;
+					else 
+						$codeReview = false;
 					echo '<div class="task-item task-item-'.$roman[$i].'">';
 						echo '<div class="task-item-backlogno">'.$roman[$i].'</div>';
 						echo '<div class="task-item-text">';
@@ -77,7 +81,15 @@ foreach($result->lists as &$list){
 							echo '</div>';
 						echo '</div>';
 						preg_match($pattern_sp , $card->name, $sp);
-						echo '<div class="task-item-hours">'.preg_replace('/[^0-9\s]/','',$sp[0]).'</div>';
+						$taskHours = preg_replace('/[^0-9\s]/','',$sp[0]);
+						echo '<div class="task-item-cr">';
+							if ($codeReview == true) {
+								$taskHours--;
+								echo 'CR 1';
+								}
+						echo '</div>';
+
+						echo '<div class="task-item-hours">'.$taskHours.'</div>';
 						
 					echo '</div>';
 				}
