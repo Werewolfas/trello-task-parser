@@ -81,9 +81,11 @@ foreach($result->lists as &$list){
 		foreach($result->cards as &$card) {
 				if($card -> idList == $list -> id && $card->closed != "true"){
 					if (preg_match('[CR 1]', $card->desc) || preg_match('[CR1]', $card->desc) ) 
-						$codeReview = true;
-					else 
-						$codeReview = false;
+						$codeReview = 1;
+					else if (preg_match('[CR 2]', $card->desc) || preg_match('[CR2]', $card->desc) ) 
+						$codeReview = 2;
+					else
+						$codeReview = 0;
 					echo '<div class="task-item task-item-'.$roman[$i].'">';
 						echo '<div class="task-item-backlogno">'.$roman[$i].'</div>';
 						echo '<div class="task-item-text">';
@@ -95,9 +97,9 @@ foreach($result->lists as &$list){
 						preg_match($pattern_sp , $card->name, $sp);
 						$taskHours = preg_replace('/[^0-9\s]/','',$sp[0]);
 						echo '<div class="task-item-cr">';
-							if ($codeReview == true) {
-								$taskHours--;
-								echo 'CR 1';
+							if ($codeReview != 0) {
+								$taskHours = $taskHours - $codeReview;
+								echo 'CR '.$codeReview;
 								}
 						echo '</div>';
 
