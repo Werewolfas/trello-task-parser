@@ -80,10 +80,10 @@ foreach($result->lists as &$list){
 		echo '</div>';
 		foreach($result->cards as &$card) {
 				if($card -> idList == $list -> id && $card->closed != "true"){
-					if (preg_match('[CR 1]', $card->desc) || preg_match('[CR1]', $card->desc) ) 
-						$codeReview = 1;
-					else if (preg_match('[CR 2]', $card->desc) || preg_match('[CR2]', $card->desc) ) 
-						$codeReview = 2;
+				//\[CR\d{1,2}\]
+					preg_match('/\[CR\s?\d{1,2}\]/', $card->desc, $cr);
+					if ($cr[0]!=null)
+						$codeReview = preg_replace('/[^0-9\s]/','',$cr[0]);
 					else
 						$codeReview = 0;
 					echo '<div class="task-item task-item-'.$roman[$i].'">';
